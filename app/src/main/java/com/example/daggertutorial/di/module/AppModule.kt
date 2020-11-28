@@ -18,8 +18,13 @@ import javax.inject.Singleton
 @InstallIn(ApplicationComponent::class)
 class AppModule {
 
+    @BaseUrl
     @Provides
     fun provideBaseUrl() = BuildConfig.BASE_URL
+
+    @AccessKey
+    @Provides
+    fun provideAccessKey() = BuildConfig.UNSPLASH_ACCESS_KEY
 
     @Provides
     @Singleton
@@ -35,7 +40,7 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient, BASE_URL: String): Retrofit =
+    fun provideRetrofit(okHttpClient: OkHttpClient, @BaseUrl BASE_URL: String): Retrofit =
         Retrofit.Builder()
             .addConverterFactory(MoshiConverterFactory.create())
             .baseUrl(BASE_URL)

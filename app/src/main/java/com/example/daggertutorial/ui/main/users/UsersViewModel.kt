@@ -1,4 +1,4 @@
-package com.example.daggertutorial.ui.main
+package com.example.daggertutorial.ui.main.users
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
@@ -11,11 +11,10 @@ import com.example.daggertutorial.utils.NetworkHelper
 import com.example.daggertutorial.utils.Resource
 import kotlinx.coroutines.launch
 
-class MainViewModel @ViewModelInject constructor(
+class UsersViewModel @ViewModelInject constructor(
     private val mainRepository: MainRepository,
     private val networkHelper: NetworkHelper
 ) : ViewModel() {
-
     private val _users = MutableLiveData<Resource<List<User>>>()
     val users: LiveData<Resource<List<User>>>
         get() = _users

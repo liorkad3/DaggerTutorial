@@ -1,4 +1,4 @@
-package com.example.daggertutorial.ui.main
+package com.example.daggertutorial.ui.main.users
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +9,8 @@ import com.bumptech.glide.Glide
 import com.example.daggertutorial.R
 import com.example.daggertutorial.model.User
 
-class MainAdapter(private val usersList: ArrayList<User>)
-    : RecyclerView.Adapter<MainAdapter.DataViewHolder>() {
+class UsersAdapter(private val usersList: ArrayList<User>)
+    : RecyclerView.Adapter<UsersAdapter.DataViewHolder>() {
 
     inner class DataViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         fun bind(user: User){
