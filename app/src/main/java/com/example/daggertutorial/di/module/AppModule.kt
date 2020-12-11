@@ -4,6 +4,7 @@ import com.example.daggertutorial.BuildConfig
 import com.example.daggertutorial.api.ApiHelper
 import com.example.daggertutorial.api.ApiHelperImpl
 import com.example.daggertutorial.api.ApiService
+import com.example.daggertutorial.api.UnsplashApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,12 +12,13 @@ import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
-class AppModule {
+object AppModule {
 
     @BaseUrl
     @Provides
@@ -42,7 +44,8 @@ class AppModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient, @BaseUrl BASE_URL: String): Retrofit =
         Retrofit.Builder()
-            .addConverterFactory(MoshiConverterFactory.create())
+//            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)
             .client(okHttpClient)
             .build()
@@ -50,6 +53,10 @@ class AppModule {
     @Provides
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideUnsplashApi(retrofit: Retrofit): UnsplashApi = retrofit.create(UnsplashApi::class.java)
 
     @Provides
     @Singleton
