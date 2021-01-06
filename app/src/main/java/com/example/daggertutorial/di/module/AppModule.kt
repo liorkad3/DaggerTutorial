@@ -1,6 +1,5 @@
 package com.example.daggertutorial.di.module
 
-import com.example.daggertutorial.BuildConfig
 import com.example.daggertutorial.api.ApiHelper
 import com.example.daggertutorial.api.ApiHelperImpl
 import com.example.daggertutorial.api.ApiService
@@ -22,15 +21,15 @@ object AppModule {
 
     @BaseUrl
     @Provides
-    fun provideBaseUrl() = BuildConfig.BASE_URL
+    fun provideBaseUrl() = "https://api.unsplash.com/"
 
     @AccessKey
     @Provides
-    fun provideAccessKey() = BuildConfig.UNSPLASH_ACCESS_KEY
+    fun provideAccessKey() = "-Y7366hOICT2yeFFb4WGEbE6IvysarEyDc9eqO6evOg"
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(): OkHttpClient = if (BuildConfig.DEBUG){
+    fun provideOkHttpClient(): OkHttpClient = if (true){
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         OkHttpClient.Builder()
